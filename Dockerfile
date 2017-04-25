@@ -14,8 +14,7 @@ RUN chmod u=rwx,go= /usr/local/bin/* \
  && ln -s /sbin/ldconfig /usr/bin \
  && ln -s /sbin/start-stop-daemon /usr/bin \
  && apt-get update -qq \
- && apt-get install -yq nano dropbear-bin git nodejs yarn \
- && dropbear -FR
+ && apt-get install -yq nano dropbear-bin git nodejs yarn
 
 VOLUME /root/.ssh /qwc2 /qwc2conf
 
