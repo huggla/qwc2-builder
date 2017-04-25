@@ -1,0 +1,4 @@
+#!/bin/sh
+startdir=`pwd`
+cd /usr/local/src && rm -rf qwc2-demo-app && git clone --recursive -b kristianstad https://github.com/invitman/qwc2-demo-app.git
+cd $startdir
