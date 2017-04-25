@@ -1,0 +1,6 @@
+#!/bin/sh
+startdir=`pwd`
+cp -rf /qwc2conf/* /qwc2
+cd /qwc2
+yarn run themesconfig
+cd $startdir
