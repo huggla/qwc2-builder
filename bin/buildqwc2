@@ -1,0 +1,8 @@
+#!/bin/sh
+startdir=`pwd`
+cd /usr/local/src/qwc2-demo-app
+yarn install
+yarn run prod
+cd $startdir
+cp -rf /usr/local/src/qwc2-demo-app/* /qwc2
+updatethemes.sh
