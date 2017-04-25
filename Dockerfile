@@ -2,7 +2,10 @@ FROM blitznote/debootstrap-amd64:16.04
 
 ENV PASSWORD=rancher
 
-RUN usermod -p `perl -e "print crypt($PASSWORD,"Q4")"` root \
+COPY ./bin/* /usr/local/bin/
+
+RUN chmod u=rwx,go= /usr/local/bin/* \
+ && usermod -p `perl -e "print crypt($PASSWORD,"Q4")"` root \
  && mkdir /etc/dropbear \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
@@ -13,8 +16,6 @@ RUN usermod -p `perl -e "print crypt($PASSWORD,"Q4")"` root \
  && apt-get update -qq \
  && apt-get install -yq nano dropbear-bin git nodejs yarn \
  && dropbear -FR
- 
-COPY ./bin/* /usr/local/bin/
 
 VOLUME /root/.ssh /qwc2 /qwc2conf
 
