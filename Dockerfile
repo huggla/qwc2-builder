@@ -20,4 +20,4 @@ VOLUME /root/.ssh /qwc2 /qwc2conf
 
 EXPOSE 22
 
-CMD dropbear -FR
+CMD ["dropbear", "-FR"]
