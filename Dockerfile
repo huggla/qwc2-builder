@@ -5,7 +5,7 @@ ENV PASSWORD=rancher
 COPY ./bin/* /usr/local/bin/
 
 RUN chmod u=rwx,go= /usr/local/bin/* \
- && usermod -p `perl -e "print crypt($PASSWORD,"Q4")"` root \
+ && usermod -p `perl -e "print crypt("$PASSWORD","Q4")"` root \
  && mkdir /etc/dropbear \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
