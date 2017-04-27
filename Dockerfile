@@ -22,3 +22,5 @@ ENV USER=user
 ENV PASSWORD=password
 
 CMD ["/usr/local/bin/set-user"]
+
+USER $USER
