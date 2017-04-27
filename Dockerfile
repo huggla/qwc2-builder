@@ -14,14 +14,13 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && apt-get install -yq nano dropbear-bin git nodejs yarn \
  && useradd --create-home --password user
 
-VOLUME /home/$USER/.ssh /qwc2 /qwc2conf
+VOLUME /home/user/.ssh /qwc2 /qwc2conf
 
 EXPOSE 22
 
-USER $USER
+USER user
 
 ENV USER=user
 ENV PASSWORD=password
 
-CMD ["dropbear","-FR"]
-`perl -e "print crypt($PASSWORD,'Q4')"`
+CMD ["/usr/local/bin/set-user"]
