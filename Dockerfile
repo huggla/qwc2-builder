@@ -2,7 +2,7 @@ FROM blitznote/debootstrap-amd64:16.04
 
 COPY ./bin/* /usr/local/bin/
 
-RUN chmod u=rwx,go= /usr/local/bin/* \
+RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && mkdir /etc/dropbear \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
@@ -24,4 +24,4 @@ EXPOSE 22
 
 USER $USER
 
-CMD ["DROPBEAR","-FR"]
+CMD ["dropbear","-FR"]
