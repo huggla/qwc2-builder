@@ -1,5 +1,5 @@
 #!/bin/sh
 
 useradd $USER
-echo '$USER:$PASSWORD' | chpasswd
+echo "$USER:$PASSWORD" | chpasswd
 dropbear -FR
