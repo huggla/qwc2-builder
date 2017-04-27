@@ -1,6 +1,7 @@
 FROM blitznote/debootstrap-amd64:16.04
 
-ENV PASSWORD=rancher
+ENV USER=user
+ENV PASSWORD=password
 
 COPY ./bin/* /usr/local/bin/
 
@@ -20,4 +21,4 @@ VOLUME /root/.ssh /qwc2 /qwc2conf
 
 EXPOSE 22
 
-CMD ["dropbear", "-FR"]
+CMD ["/bin/sh", "/usr/local/bin/entrypoint.sh"]
