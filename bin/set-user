@@ -1,4 +1,4 @@
 #!/bin/sh
 
 usermod --password `perl -e "print crypt($PASSWORD,'Q4')"` --login $USER
-dropbear -FR
+chpst -u $USER -- dropbear -FR
