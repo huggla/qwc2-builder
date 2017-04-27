@@ -12,7 +12,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && ln -s /sbin/start-stop-daemon /usr/bin \
  && apt-get update -qq \
  && apt-get install -yq nano dropbear-bin git nodejs yarn \
- && useradd --create-home --password user
+ && useradd --create-home user
 
 VOLUME /home/user/.ssh /qwc2 /qwc2conf
 
