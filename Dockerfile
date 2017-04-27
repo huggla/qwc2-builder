@@ -18,8 +18,6 @@ VOLUME /home/user/.ssh /qwc2 /qwc2conf
 
 EXPOSE 22
 
-USER user
-
 ENV USER=user
 ENV PASSWORD=password
 
