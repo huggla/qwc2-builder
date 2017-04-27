@@ -1,12 +1,8 @@
 FROM blitznote/debootstrap-amd64:16.04
 
-ENV USER=user
-ENV PASSWORD=password
-
 COPY ./bin/* /usr/local/bin/
 
 RUN chmod u=rwx,go= /usr/local/bin/* \
- && usermod -p `perl -e "print crypt(${PASSWORD},"Q4")"` root \
  && mkdir /etc/dropbear \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
@@ -17,8 +13,15 @@ RUN chmod u=rwx,go= /usr/local/bin/* \
  && apt-get update -qq \
  && apt-get install -yq nano dropbear-bin git nodejs yarn
 
-VOLUME /root/.ssh /qwc2 /qwc2conf
+ENV USER=user
+ENV PASSWORD=password
+
+RUN useradd --create-home --password `perl -e "print crypt($PASSWORD,'Q4')"` $USER
+
+VOLUME /home/$USER/.ssh /qwc2 /qwc2conf
 
 EXPOSE 22
 
-CMD ["/bin/sh", "/usr/local/bin/entrypoint.sh"]
+USER $USER
+
+CMD ["DROPBEAR","-FR"]
