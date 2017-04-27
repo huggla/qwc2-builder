@@ -11,12 +11,8 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && ln -s /sbin/ldconfig /usr/bin \
  && ln -s /sbin/start-stop-daemon /usr/bin \
  && apt-get update -qq \
- && apt-get install -yq nano dropbear-bin git nodejs yarn
-
-ENV USER=user
-ENV PASSWORD=password
-
-RUN useradd --create-home --password `perl -e "print crypt($PASSWORD,'Q4')"` $USER
+ && apt-get install -yq nano dropbear-bin git nodejs yarn \
+ && useradd --create-home --password user
 
 VOLUME /home/$USER/.ssh /qwc2 /qwc2conf
 
@@ -24,4 +20,8 @@ EXPOSE 22
 
 USER $USER
 
+ENV USER=user
+ENV PASSWORD=password
+
 CMD ["dropbear","-FR"]
+`perl -e "print crypt($PASSWORD,'Q4')"`
