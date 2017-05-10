@@ -1,5 +1,5 @@
 #!/bin/sh
 
-usermod --password `perl -e "print crypt($PASSWORD,'Q4')"` --login $USER
+usermod --password `perl -e "print crypt($PASSWORD,'Q4')"` --login $USER user
 unset PASSWORD
 chpst -u $USER -- dropbear -FR
