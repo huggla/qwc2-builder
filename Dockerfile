@@ -22,4 +22,6 @@ VOLUME /home/user/.ssh /qwc2 /qwc2conf
 
 EXPOSE 22
 
-CMD ["/usr/local/bin/set-user"]
+CMD ["/bin/sh", "-c", "/usr/local/bin/set-user"]
+
+USER user2
