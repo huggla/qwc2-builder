@@ -2,9 +2,6 @@ FROM blitznote/debootstrap-amd64:16.04
 
 COPY ./bin/* /usr/local/bin/
 
-ENV USER=user
-ENV PASSWORD=password
-
 RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && mkdir /etc/dropbear \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
@@ -16,10 +13,13 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && apt-get update -qq \
  && apt-get install -yq nano dropbear-bin git nodejs yarn \
  && rm -rf /var/lib/apt/lists/* \
- && useradd --create-home $USER
+ && useradd --create-home user
 
 VOLUME /home/user/.ssh /qwc2 /qwc2conf
 
 EXPOSE 22
+
+ENV USER=user
+ENV PASSWORD=password
 
 CMD ["/bin/sh", "-c", "/usr/local/bin/set-user"]
