@@ -8,6 +8,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && touch /run/secrets/ssh-key \
  && echo `date | md5sum` > /run/secrets/user-pw \
  && chown user:user /home/user/.ssh /run/secrets/ssh-key /run/secrets/user-pw \
+ && chmod u=rw,go= /home/user/.ssh \
  && chmod u=r,go= /home/user/.ssh /run/secrets/ssh-key /run/secrets/user-pw \
  && ln -s /run/secrets/ssh-key /home/user/.ssh/id_rsa \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
