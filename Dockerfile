@@ -4,7 +4,7 @@ COPY ./bin/* /usr/local/bin/
 
 RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && useradd --create-home user \
- && mkdir /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh \
+ && mkdir -p /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh \
  && touch /run/secrets/ssh-key \
  && echo `date | md5sum` > /run/secrets/user-pw \
  && chown user:user /home/user/.ssh /run/secrets/ssh-key /run/secrets/user-pw \
