@@ -1,6 +1,6 @@
 #!/bin/sh
 
-usermod --password `perl -e "print crypt(${PASSWORD},'Q4')"` --login ${USER} user
+usermod --password `perl -e "print crypt(\`cat /run/secrets/user-pw\`,'Q4')"` --login ${USER} user
 groupmod --new-name ${USER} user
 #unset PASSWORD
 #chpst -u $USER -- dropbear -FR
