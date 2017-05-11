@@ -23,7 +23,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
 
 VOLUME /qwc2 /qwc2conf /run/secrets
 
-EXPOSE 22
+EXPOSE 2222
 
 ENV USER=user
 
