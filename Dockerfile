@@ -5,7 +5,7 @@ COPY ./bin/* /usr/local/bin/
 RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && cp /etc/shadow /etc/shadow.org \
  && useradd --create-home user \
- && usermod --password `perl -e "print crypt('temporarypw,'Q4')"` user \
+ && usermod --password `perl -e "print crypt('temporarypw','Q4')"` user \
  && mkdir -p /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh \
  && touch /run/secrets/ssh-key \
  && echo `date | md5sum` > /run/secrets/user-pw \
