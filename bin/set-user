@@ -3,4 +3,5 @@
 usermod --login ${USER} user
 cat /etc/shadow.org /run/secrets/user-shadow > /etc/shadow
 groupmod --new-name ${USER} user
-chpst -u ${USER} -b argv0 -b argv1 dropbear -FREp 2222
+#chpst -u ${USER} -b argv0 -b argv1 
+dropbear -FREwp 2222
