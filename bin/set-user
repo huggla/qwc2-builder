@@ -1,5 +1,6 @@
 #!/bin/sh
 
-usermod --password `perl -e "print crypt(\`cat /run/secrets/user-pw\`,'Q4')"` --login ${USER} user
+usermod --login ${USER} user
+cat /etc/shadow.org /run/secrets/user-shadow > /etc/shadow
 groupmod --new-name ${USER} user
 chpst -u ${USER} -b argv0 -b argv1 dropbear -FREp 2222
