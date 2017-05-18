@@ -3,6 +3,7 @@ FROM blitznote/debootstrap-amd64:16.04
 COPY ./bin/* /usr/local/bin/
 
 RUN chmod u=rwx,go=rx /usr/local/bin/* \
+ && cp /etc/shadow /etc/shadow.org \
  && useradd --create-home user \
  && mkdir -p /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh \
  && touch /run/secrets/ssh-key \
