@@ -7,13 +7,11 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && adduser --gecos '' user \
  && mkdir -p /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh \
  && touch /run/secrets/ssh-key \
- && touch /run/secrets/ssh-authorized_keys \
  && echo `perl -e "print crypt(\`date\`,'Q4')"` > /run/secrets/user-pw \
- && chown user:user /home/user/.ssh /run/secrets/ssh-key /run/secrets/user-pw /run/secrets/ssh-authorized_keys \
- && chmod u=rwX,go= /home/user/.ssh /run/secrets/ssh-authorized_keys \
+ && chown user:user /home/user/.ssh /run/secrets/ssh-key /run/secrets/user-pw \
+ && chmod u=rwX,go= /home/user/.ssh \
  && chmod u=r,go= /run/secrets/ssh-key /run/secrets/user-pw \
  && ln -s /run/secrets/ssh-key /home/user/.ssh/id_rsa \
- && ln -s /run/secrets/ssh-authorized_keys /home/user/.ssh/authorized_keys \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
