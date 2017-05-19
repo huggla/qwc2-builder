@@ -1,7 +1,8 @@
 #!/bin/sh
 
 usermod --login ${USER} user
-cat /etc/shadow.org /run/secrets/user-shadow > /etc/shadow
 groupmod --new-name ${USER} user
-#chpst -u ${USER} -b argv0 -b argv1 
+echo -n ${USER}':' >> /etc/shadow.org
+cat /etc/shadow.org /run/secrets/user-pw > /etc/shadow
+echo ':17304:0:99999:7:::' >> /etc/shadow
 dropbear -FREwp 2222
