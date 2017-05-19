@@ -18,5 +18,6 @@ then
     echo -n 'no-port-forwarding,no-agent-forwarding,no-X11-forwarding,no-pty,command="/usr/local/bin/upd-qwc2-themes" >> /run/secrets/ssh-authorized_keys
     cat /run/secrets/ssh-themeupdate_key >> /run/secrets/ssh-authorized_keys
 fi
+chown ${USER}:${USER} /run/secrets/ssh-authorized_keys
 chmod u=rw,go= /run/secrets/ssh-authorized_keys
 dropbear -FREsjkmwp 2222
