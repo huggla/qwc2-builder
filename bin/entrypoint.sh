@@ -15,7 +15,7 @@ else
 fi
 if [ -e /run/secrets/ssh-themeupdate-key ]
 then
-    echo -n 'no-port-forwarding,no-agent-forwarding,no-X11-forwarding,no-pty,command="/usr/local/bin/upd-qwc2-themes"' >> /home/user/.ssh/authorized_keys
+    echo -n 'no-port-forwarding,no-agent-forwarding,no-X11-forwarding,no-pty,command="/usr/local/bin/upd-qwc2-themes" ' >> /home/user/.ssh/authorized_keys
     cat /run/secrets/ssh-themeupdate-key >> /home/user/.ssh/authorized_keys
     echo >> /home/user/.ssh/authorized_keys
 fi
