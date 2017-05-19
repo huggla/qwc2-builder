@@ -10,7 +10,7 @@ if [ -e /run/secrets/ssh-authorized_keys ]
 then
     cp /run/secrets/ssh-authorized_keys /home/user/.ssh/authorized_keys
 else
-    touch /run/secrets/ssh-authorized_keys
+    touch /home/user/.ssh/authorized_keys
 fi
 if [ -e /run/secrets/ssh-themeupdate_key ]
 then
