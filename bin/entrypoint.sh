@@ -19,6 +19,6 @@ then
     cat /run/secrets/ssh-themeupdate_key >> /home/user/.ssh/authorized_keys
     echo >> /home/user/.ssh/authorized_keys
 fi
-chown ${USER}:${USER} /run/secrets/ssh-authorized_keys
-chmod u=rw,go= /run/secrets/ssh-authorized_keys
+chown ${USER}:${USER} /home/user/.ssh/authorized_keys
+chmod u=rw,go= /home/user/.ssh/authorized_keys
 dropbear -FREsjkmwp 2222
