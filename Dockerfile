@@ -7,9 +7,9 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && adduser --gecos '' user \
  && mkdir -p /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh \
  && touch /run/secrets/ssh-key \
- && echo `date | md5sum` > /run/secrets/user-pw \
- && chown user:user /home/user/.ssh /run/secrets/ssh-key /run/secrets/user-pw /etc/dropbear \
- && chmod u=rwx,go= /home/user/.ssh /etc/dropbear \
+ && echo `perl -e "print crypt(\`date\`,'Q4')"` > /run/secrets/user-pw \
+ && chown user:user /home/user/.ssh /run/secrets/ssh-key /run/secrets/user-pw \
+ && chmod u=rwx,go= /home/user/.ssh \
  && chmod u=r,go= /run/secrets/ssh-key /run/secrets/user-pw \
  && ln -s /run/secrets/ssh-key /home/user/.ssh/id_rsa \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
@@ -28,4 +28,4 @@ EXPOSE 2222
 
 ENV USER=user
 
-CMD ["/bin/sh", "-c", "/usr/local/bin/set-user"]
+CMD ["/bin/sh", "-c", "/usr/local/bin/entrypoint.sh"]
