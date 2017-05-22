@@ -6,8 +6,8 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && cp /etc/shadow /etc/shadow.org \
  && adduser --gecos '' user \
  && mkdir -p /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh \
- && touch /run/secrets/ssh-key \
- && echo `perl -e "print crypt(\`date\`,'Q4')"` > /run/secrets/user-pw \
+ && touch /run/secrets/ssh-key /run/secrets/user-pw \
+ #&& echo `perl -e "print crypt(\`date\`,'Q4')"` > /run/secrets/user-pw \
  && chown user:user /home/user/.ssh /run/secrets/ssh-key /run/secrets/user-pw \
  && chmod u=rwX,go= /home/user/.ssh \
  && chmod u=r,go= /run/secrets/ssh-key /run/secrets/user-pw \
@@ -26,6 +26,6 @@ VOLUME /qwc2 /qwc2conf /run/secrets
 
 EXPOSE 2222
 
-ENV USER=user
+ENV USER=user SSH-PORT=2222
 
 CMD ["/bin/sh", "-c", "/usr/local/bin/entrypoint.sh"]
