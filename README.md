@@ -5,7 +5,11 @@ Environmental variables
 -----------------------
 USER=container_user_name
 
-SSH_PORT=exposed ssh port
+SSH_PORT=exposed_ssh_port
+
+QWC2_GIT_BRANCH=git_branch_to_clone
+
+QWC2_GIT_REPOSITORY=git_repository_to_clone
 
 Volumes
 -------
