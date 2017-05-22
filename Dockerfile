@@ -26,6 +26,8 @@ VOLUME /qwc2 /qwc2conf /run/secrets
 
 ENV USER=user
 ENV SSH_PORT=22
+ENV QWC2_GIT_REPOSITORY=https://github.com/qgis/qwc2-demo-app.git
+ENV QWC2_GIT_BRANCH=master
 EXPOSE $SSH_PORT
 
 CMD ["/bin/sh", "-c", "/usr/local/bin/entrypoint.sh"]
