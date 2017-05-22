@@ -7,6 +7,8 @@ then
     echo -n ${USER}':' >> /etc/shadow.org
     cat /etc/shadow.org /run/secrets/user-pw > /etc/shadow
     echo ':17304:0:99999:7:::' >> /etc/shadow
+    echo 'Starting ssh with password authentication'
+    echo "dropbear -FREjkmwp ${SSH-PORT}"
     dropbear -FREjkmwp ${SSH-PORT}
 elif [ -s /run/secrets/ssh-authorized_keys ] || [ -s /run/secrets/ssh-themeupdate-key ]
 then
@@ -25,5 +27,7 @@ then
     fi
     chown ${USER}:${USER} /home/user/.ssh/authorized_keys
     chmod u=rw,go= /home/user/.ssh/authorized_keys
+    echo 'Starting ssh with public key authentication'
     dropbear -FREsjkmwp ${SSH-PORT}
+    echo "dropbear -FREsjkmwp ${SSH-PORT}"
 fi
