@@ -5,7 +5,7 @@ cd /usr/local/src
 rm -rf qwc2-demo-app
 if [ $EUID -eq 0 ]
 then
-    chpst -u ${USER} -b argv0 -b argv1 -b argv2 -b argv3 -b argv4 $gitcommand
+    chpst -u ${USER} $gitcommand
 else
     $gitcommand
 fi
