@@ -32,3 +32,7 @@ Executables
 Connect with ssh
 ----------------
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p SSH_PORT USER@containerAddress
+
+Encrypting password
+-------------------
+perl -e "print crypt('myUnencryptedPassword','Q4')"
