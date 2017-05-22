@@ -4,7 +4,7 @@ chuser="chpst -u ${USER}"
 configure="cp -rf /qwc2conf/* /qwc2"
 update="yarn run themesconfig"
 cd /qwc2
-if [ "$EUID" -eq 0 ]
+if [ "`id -u`" -eq 0 ]
 then
     $chuser $configure
     $chuser $update
