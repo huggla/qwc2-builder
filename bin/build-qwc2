@@ -6,16 +6,16 @@ update="yarn run prod"
 replace="cp -rf /usr/local/src/qwc2-demo-app/* /qwc2"
 chuser="chpst -u ${USER}"
 cd /usr/local/src/qwc2-demo-app
-if ((EUID))
+if [ "$EUID" -eq 0 ]
 then
-    $install
-    $configure
-    $update
-    $replace
-else
     $chuser $install
     $chuser $configure
     $chuser $update
     $chuser $replace
+else
+    $install
+    $configure
+    $update
+    $replace
 fi
 cd $startdir
