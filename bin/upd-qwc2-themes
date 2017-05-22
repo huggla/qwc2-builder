@@ -1,7 +1,16 @@
 #!/bin/sh
 startdir=`pwd`
-cp -rf /qwc2conf/* /qwc2
+chuser="chpst -u ${USER}"
+configure="cp -rf /qwc2conf/* /qwc2"
+update="yarn run themesconfig"
 cd /qwc2
-yarn run themesconfig
+if [ "$EUID" -eq 0 ]
+then
+    $chuser $configure
+    $chuser $update
+else
+    $configure
+    $update
+fi
 cd $startdir
 exit
