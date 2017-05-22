@@ -3,7 +3,7 @@ startdir=`pwd`
 gitcommand="git clone --recursive -b ${QWC2_GIT_BRANCH} ${QWC2_GIT_REPOSITORY}"
 cd /usr/local/src
 rm -rf qwc2-demo-app
-if [ `id -u` -eq 0 ]
+if [ "`id -u`" -eq 0 ]
 then
     chpst -u ${USER} $gitcommand
 else
