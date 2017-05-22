@@ -21,7 +21,14 @@ Volumes
 
 Executables
 -----------
-/usr/local/bin/entrypoint.sh is run at container start. 
+/usr/local/bin/entrypoint.sh is run at container start.
+
 /usr/local/bin/clone-qwc2 clones QWC2 from Github.
+
 /usr/local/bin/build-qwc2 builds QWC2 from cloned source. The result is saved to /qwc2.
+
 /usr/local/bin/upd-qwc2-themes updates /qwc2 to latest configuration read from /qwc2conf.
+
+Connect with ssh
+----------------
+ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p SSH_PORT USER@containerAddress
