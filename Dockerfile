@@ -24,8 +24,8 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
 
 VOLUME /qwc2 /qwc2conf /run/secrets
 
-EXPOSE 2222
-
-ENV USER=user SSH-PORT=2222
+ENV USER=user
+ENV SSH-PORT=22
+EXPOSE ${SSH-PORT}
 
 CMD ["/bin/sh", "-c", "/usr/local/bin/entrypoint.sh"]
