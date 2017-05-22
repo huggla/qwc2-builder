@@ -1,12 +1,12 @@
 #!/bin/sh
 startdir=`pwd`
+gitcommand="git clone --recursive -b ${QWC2_GIT_BRANCH} ${QWC2_GIT_REPOSITORY}"
 cd /usr/local/src
+rm -rf qwc2-demo-app
 if [ $EUID -eq 0 ]
 then
-    chpst -u ${USER} -b argv0 -b argv1 rm -rf qwc2-demo-app
-    chpst -u ${USER} -b argv0 -b argv1 -b argv2 -b argv3 -b argv4 git clone --recursive -b ${QWC2_GIT_BRANCH} ${QWC2_GIT_REPOSITORY}
+    chpst -u ${USER} -b argv0 -b argv1 -b argv2 -b argv3 -b argv4 $gitcommand
 else
-    rm -rf qwc2-demo-app
-    git clone --recursive -b ${QWC2_GIT_BRANCH} ${QWC2_GIT_REPOSITORY}
+    $gitcommand
 fi
 cd $startdir
