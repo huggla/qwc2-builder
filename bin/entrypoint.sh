@@ -1,7 +1,9 @@
 #!/bin/sh
-
-usermod --login ${USER} user
-groupmod --new-name ${USER} user
+if [ "`id -u user > /dev/null 2>&1; echo $?`" -eq 0 ]
+then
+    usermod --login ${USER} user
+    groupmod --new-name ${USER} user
+fi
 if [ -s /run/secrets/user-pw ]
 then
     echo -n ${USER}':' >> /etc/shadow.org
