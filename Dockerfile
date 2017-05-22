@@ -5,7 +5,9 @@ COPY ./bin/* /usr/local/bin/
 RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && cp /etc/shadow /etc/shadow.org \
  && adduser --gecos '' user \
- && mkdir -p /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh \
+ && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh \
+ && chown :user /usr/local/src \
+ && chmod g+w /usr/local/src \
  && touch /run/secrets/ssh-key /run/secrets/user-pw \
  #&& echo `perl -e "print crypt(\`date\`,'Q4')"` > /run/secrets/user-pw \
  && chown user:user /home/user/.ssh /run/secrets/ssh-key /run/secrets/user-pw \
