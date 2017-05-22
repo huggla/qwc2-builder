@@ -1,8 +1,21 @@
 #!/bin/sh
 startdir=`pwd`
+install="yarn install"
+configure="cp -rf /qwc2conf/* ./"
+update="yarn run prod"
+replace="cp -rf /usr/local/src/qwc2-demo-app/* /qwc2"
+chuser="chpst -u ${USER}"
 cd /usr/local/src/qwc2-demo-app
-yarn install
-cp -rf /qwc2conf/* ./
-yarn run prod
+if [ $EUID -eq 0 ]
+then
+    $chuser $install
+    $chuser $configure
+    $chuser $update
+    $chuser $replace
+else
+    $install
+    $configure
+    $update
+    $replace
+fi
 cd $startdir
-cp -rf /usr/local/src/qwc2-demo-app/* /qwc2
