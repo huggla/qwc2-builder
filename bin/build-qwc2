@@ -1,4 +1,5 @@
 #!/bin/sh
+
 startdir=`pwd`
 install="yarn install --cache-folder /home/user/.cache"
 configure="cp -rf /qwc2conf/* ./"
@@ -8,15 +9,19 @@ chuser="chpst -u ${USER}"
 cd /usr/local/src/qwc2-demo-app
 if [ "`id -u`" -eq 0 ]
 then
-    $chuser $install
-    $chuser $configure
-    $chuser $update
-    $chuser $replace
+    $chuser $install \
+ && $chuser $configure \
+ && $chuser $update \
+ && echo 'Pease wait. Copying files to /qwc2...' \
+ && $chuser $replace \
+ && echo 'Done!'
 else
-    $install
-    $configure
-    $update
-    $replace
+    $install \
+ && $configure \
+ && $update \
+ && echo 'Pease wait. Copying files to /qwc2...' \
+ && $replace \
+ && echo 'Done!'
 fi
 cd $startdir
 exit
