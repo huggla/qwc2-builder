@@ -10,3 +10,4 @@ else
     $gitcommand
 fi
 cd $startdir
+exit
