@@ -16,7 +16,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && chmod u=r,go= /run/secrets/ssh-key /run/secrets/user-pw \
  && ln -s /run/secrets/ssh-key /home/user/.ssh/id_rsa \
  && ln -s /home/user/.config/git /root/.config/git \
- && ln -s /home/user/.config/yarn /root/.config/yarn \
+ #&& ln -s /home/user/.config/yarn /root/.config/yarn \
  && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > /home/user/.ssh/config \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
