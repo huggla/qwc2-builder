@@ -1,5 +1,6 @@
 #!/bin/sh
 startdir=`pwd`
+export XDG_CONFIG_HOME=/home/user/.config
 install="yarn install --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
 configure="cp -rf /qwc2conf/* ./"
 update="yarn run prod"
