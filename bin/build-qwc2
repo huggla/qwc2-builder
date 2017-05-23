@@ -19,3 +19,4 @@ else
     $replace
 fi
 cd $startdir
+exit
