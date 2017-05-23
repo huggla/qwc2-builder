@@ -7,17 +7,17 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && adduser --gecos '' user \
  && adduser user root \
  && chmod g+x /root \
- && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.cache /root/.config /home/user/.config/git /home/user/.config/yarn/global \
+ && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.cache /home/user/.config/yarn/global \
  && chown :user /usr/local/src /qwc2 /qwc2conf \
  && chmod g+w /usr/local/src /qwc2 /qwc2conf \
  && touch /run/secrets/ssh-key /run/secrets/user-pw \
+ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > /home/user/.ssh/config \
  && chown -R user:user /home/user /run/secrets/ssh-key /run/secrets/user-pw \
  && chmod u=rwX,go= /home/user/.ssh \
- && chmod u=r,go= /run/secrets/ssh-key /run/secrets/user-pw \
+ && chmod u=r,go= /run/secrets/ssh-key /run/secrets/user-pw /home/user/.ssh/config \
  && ln -s /run/secrets/ssh-key /home/user/.ssh/id_rsa \
  #&& ln -s /home/user/.config/git /root/.config/git \
  #&& ln -s /home/user/.config/yarn /root/.config/yarn \
- && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > /home/user/.ssh/config \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
@@ -26,6 +26,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && ln -s /sbin/start-stop-daemon /usr/bin \
  && apt-get update -qq \
  && apt-get install -yq nano dropbear-bin git nodejs yarn \
+ && export XDG_CONFIG_HOME=/home/user/.config \
  && rm -rf /var/lib/apt/lists/* \
 
 VOLUME /qwc2 /qwc2conf /run/secrets
