@@ -2,7 +2,7 @@
 startdir=`pwd`
 install="yarn install"
 configure="cp -rf /qwc2conf/* ./"
-update="yarn run prod"
+update="yarn run prod --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
 replace="cp -rf /usr/local/src/qwc2-demo-app/* /qwc2"
 chuser="chpst -u ${USER}"
 cd /usr/local/src/qwc2-demo-app
