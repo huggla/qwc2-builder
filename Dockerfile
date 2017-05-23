@@ -9,13 +9,14 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.cache /home/user/.config/yarn/global /root/.config \
  && chown :user /usr/local/src /qwc2 /qwc2conf \
  && chmod g+w /usr/local/src /qwc2 /qwc2conf \
- && touch /run/secrets/ssh-key /run/secrets/user-pw \
+ && touch /run/secrets/ssh-key /run/secrets/user-pw /home/user/.yarnrc \
  && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > /home/user/.ssh/config \
  && chown -R user:user /home/user /run/secrets/ssh-key /run/secrets/user-pw \
  && chmod u=rwX,go= /home/user/.ssh \
  && chmod u=r,go= /run/secrets/ssh-key /run/secrets/user-pw /home/user/.ssh/config \
  && ln -s /run/secrets/ssh-key /home/user/.ssh/id_rsa \
  && ln -s /home/user/.config/yarn /root/.config/ \
+ && ln -s /home/user/.yarnrc /root/ \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
