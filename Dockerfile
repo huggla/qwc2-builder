@@ -7,7 +7,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && adduser --gecos '' user \
  && adduser user root \
  && chmod g+x /root \
- && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /root/.config /home/user/.config/git /home/user/.config/yarn/global \
+ && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.cache /root/.config /home/user/.config/git /home/user/.config/yarn/global \
  && chown :user /usr/local/src /qwc2 /qwc2conf \
  && chmod g+w /usr/local/src /qwc2 /qwc2conf \
  && touch /run/secrets/ssh-key /run/secrets/user-pw \
