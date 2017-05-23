@@ -7,7 +7,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && adduser --gecos '' user \
  && adduser user root \
  && chmod g+x /root \
- && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.cache /home/user/.config/yarn/global /home/user/.config/yarn/links /root/.config/yarn \
+ && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.cache /home/user/.config/yarn/global /root/.config \
  && chown :user /usr/local/src /qwc2 /qwc2conf \
  && chmod g+w /usr/local/src /qwc2 /qwc2conf \
  && touch /run/secrets/ssh-key /run/secrets/user-pw \
@@ -17,7 +17,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && chmod u=r,go= /run/secrets/ssh-key /run/secrets/user-pw /home/user/.ssh/config \
  && ln -s /run/secrets/ssh-key /home/user/.ssh/id_rsa \
  #&& ln -s /home/user/.config/git /root/.config/git \
- && ln -s /home/user/.config/yarn/links /root/.config/yarn \
+ && ln -s /home/user/.config/yarn /root/.config/ \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
