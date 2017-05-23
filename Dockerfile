@@ -5,14 +5,16 @@ COPY ./bin/* /usr/local/bin/
 RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && cp /etc/shadow /etc/shadow.org \
  && adduser --gecos '' user \
- && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh \
+ && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.config/git /home/user/.config/yarn \
  && chown :user /usr/local/src /qwc2 /qwc2conf \
  && chmod g+w /usr/local/src /qwc2 /qwc2conf \
  && touch /run/secrets/ssh-key /run/secrets/user-pw \
- && chown user:user /home/user/.ssh /run/secrets/ssh-key /run/secrets/user-pw \
+ && chown -R user:user /home/user /run/secrets/ssh-key /run/secrets/user-pw \
  && chmod u=rwX,go= /home/user/.ssh \
  && chmod u=r,go= /run/secrets/ssh-key /run/secrets/user-pw \
  && ln -s /run/secrets/ssh-key /home/user/.ssh/id_rsa \
+ && ln -s /home/user/.config/git /root/.config/git \
+ && ln -s /home/user/.config/yarn /root/.config/yarn \
  && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > /home/user/.ssh/config \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
