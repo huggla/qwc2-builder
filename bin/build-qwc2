@@ -9,9 +9,11 @@ chuser="chpst -u ${USER}"
 cd /usr/local/src/qwc2-demo-app
 if [ "`id -u`" -eq 0 ]
 then
-    $chuser $install \
+    chmod o+x /root \
+ && $chuser $install \
  && $chuser $configure \
  && $chuser $update \
+ && chmod o-x /root \
  && echo 'Pease wait. Copying files to /qwc2...' \
  && $chuser $replace \
  && echo 'Done!'
