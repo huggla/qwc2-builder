@@ -1,4 +1,5 @@
 #!/bin/sh
+export XDG_CONFIG_HOME=/home/user/.config
 if [ "`id -u user > /dev/null 2>&1; echo $?`" -eq 0 ]
 then
     usermod --login ${USER} user
