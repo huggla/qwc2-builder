@@ -34,6 +34,7 @@ ENV USER=user
 ENV SSH_PORT=22
 ENV QWC2_GIT_REPOSITORY=https://github.com/qgis/qwc2-demo-app.git
 ENV QWC2_GIT_BRANCH=master
+ENV XDG_CONFIG_HOME=/home/user/.config
 EXPOSE $SSH_PORT
 
 CMD ["/bin/sh", "-c", "/usr/local/bin/entrypoint.sh"]
