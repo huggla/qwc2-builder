@@ -39,3 +39,4 @@ else
     echo "dropbear -FREsjkmwp ${SSH_PORT}"
     dropbear -FREsjkmwp ${SSH_PORT}
 fi
+exit
