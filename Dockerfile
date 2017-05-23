@@ -26,7 +26,6 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && ln -s /sbin/start-stop-daemon /usr/bin \
  && apt-get update -qq \
  && apt-get install -yq nano dropbear-bin git nodejs yarn \
- && export XDG_CONFIG_HOME=/home/user/.config \
  && rm -rf /var/lib/apt/lists/* \
 
 VOLUME /qwc2 /qwc2conf /run/secrets
