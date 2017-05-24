@@ -14,9 +14,9 @@ QWC2_GIT_REPOSITORY=git_repository_to_clone
 Volumes
 -------
 /run/secrets:
-  1. /run/secrets/ssh-key contains private ssh key to use when cloning from Github.
+  1. /run/secrets/id_rsa contains private ssh key to use when cloning from Github.
   2. /run/secrets/user-pw contains encrypted password for USER. If user-pw is set then it is used for ssh authentication.
-  3. /run/secrets/ssh-authorized_keys is used for ssh private key authentication. Is copied to ~/.ssh/authorized_keys.
+  3. /run/secrets/authorized_keys is used for ssh private key authentication. Is copied to ~/.ssh/authorized_keys.
   4. /run/secrets/ssh-themeupdate-key contains a public key used for ssh connection with theme update permission only.
 
 /qwc2conf is where to put QWC2 configuration files.
