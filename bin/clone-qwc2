@@ -6,6 +6,7 @@ read QWC2_GIT_REPOSITORY < /QWC2_GIT_REPOSITORY
 gitcommand="git clone --recursive -b ${QWC2_GIT_BRANCH} ${QWC2_GIT_REPOSITORY}"
 cd /usr/local/src
 rm -rf qwc2-demo-app
+echo
 if [ "`id -u`" -eq 0 ]
 then
     chpst -u ${USER} $gitcommand
@@ -13,5 +14,5 @@ else
     $gitcommand
 fi
 cd $startdir
-} 2>&1 | tee -a /var/log/stdout+stderr.log 
+} 2>&1 | tee -a /var/log/stdout+stderr.log &
 exit
