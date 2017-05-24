@@ -5,16 +5,15 @@ COPY ./bin/* /usr/local/bin/
 RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && cp /etc/shadow /etc/shadow.org \
  && adduser --gecos '' user \
- && chmod o+x /root \
  && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.cache /home/user/.config/yarn/global /root/.config \
  && chown :user /usr/local/src /qwc2 /qwc2conf \
  && chmod g+w /usr/local/src /qwc2 /qwc2conf \
- && touch /run/secrets/ssh-key /run/secrets/user-pw /home/user/.yarnrc \
+ && touch /run/secrets/id_rsa /run/secrets/user-pw /home/user/.yarnrc \
  && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > /home/user/.ssh/config \
- && chown -R user:user /home/user /run/secrets/ssh-key /run/secrets/user-pw \
+ && chown -R user:user /home/user /run/secrets/id_rsa /run/secrets/user-pw \
  && chmod u=rwX,go= /home/user/.ssh \
- && chmod u=r,go= /run/secrets/ssh-key /run/secrets/user-pw /home/user/.ssh/config \
- && ln -s /run/secrets/ssh-key /home/user/.ssh/id_rsa \
+ && chmod u=r,go= /run/secrets/id_rsa /run/secrets/user-pw /home/user/.ssh/config \
+ && ln -s /run/secrets/id_rsa /home/user/.ssh/ \
  && ln -s /home/user/.config/yarn /root/.config/ \
  && ln -s /home/user/.yarnrc /root/ \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
