@@ -8,9 +8,9 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.cache /home/user/.config/yarn/global /root/.config \
  && chown :user /usr/local/src /qwc2 /qwc2conf \
  && chmod g+w /usr/local/src /qwc2 /qwc2conf \
- && touch /run/secrets/id_rsa /run/secrets/user-pw /home/user/.yarnrc \
+ && touch /run/secrets/id_rsa /run/secrets/user-pw /home/user/.yarnrc /var/log/qwc2-clone.log /var/log/qwc2-build.log /var/log/upd-qwc2-themes.log \
  && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > /home/user/.ssh/config \
- && chown -R user:user /home/user /run/secrets/id_rsa /run/secrets/user-pw \
+ && chown -R user:user /home/user /run/secrets/id_rsa /run/secrets/user-pw /var/log/qwc2-clone.log /var/log/qwc2-build.log /var/log/upd-qwc2-themes.log \
  && chmod u=rwX,go= /home/user/.ssh \
  && chmod u=r,go= /run/secrets/id_rsa /run/secrets/user-pw /home/user/.ssh/config \
  && ln -s /run/secrets/id_rsa /home/user/.ssh/ \
