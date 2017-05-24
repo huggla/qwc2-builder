@@ -10,7 +10,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && chmod g+w /usr/local/src /qwc2 /qwc2conf \
  && touch /run/secrets/id_rsa /run/secrets/user-pw /home/user/.yarnrc /var/log/stdout+stderr.log \
  && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > /home/user/.ssh/config \
- && chown -R user:user /home/user /run/secrets/id_rsa /run/secrets/user-pw /var/log/clone-qwc2.log /var/log/build-qwc2.log /var/log/upd-qwc2-themes.log \
+ && chown -R user:user /home/user /run/secrets/id_rsa /run/secrets/user-pw /var/log/stdout+stderr.log \
  && chmod u=rwX,go= /home/user/.ssh \
  && chmod u=r,go= /run/secrets/id_rsa /run/secrets/user-pw /home/user/.ssh/config \
  && ln -s /run/secrets/id_rsa /home/user/.ssh/ \
