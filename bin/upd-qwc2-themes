@@ -15,5 +15,7 @@ else
     $update
 fi
 cd $startdir
+echo
+echo 'DONE!'
 } 2>&1 | tee -a /var/log/stdout+stderr.log &
 exit
