@@ -1,5 +1,5 @@
 #!/bin/sh
-
+{
 startdir=`pwd`
 install="yarn install --cache-folder /home/user/.cache"
 configure="cp -rf /qwc2conf/* ./"
@@ -26,4 +26,5 @@ else
  && echo 'Done!'
 fi
 cd $startdir
+} >> /var/log/stdout+stderr.log 2>&1
 exit
