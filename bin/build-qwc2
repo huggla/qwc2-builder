@@ -17,7 +17,7 @@ then
  && chmod o-x /root \
  && echo 'Please wait, copying files to /qwc2...' \
  && $chuser $replace \
- && echo 'Done!'
+ && echo 'DONE!'
 else
     $install \
  && $configure \
