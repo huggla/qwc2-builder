@@ -41,4 +41,7 @@ else
 fi
 echo ${QWC2_GIT_BRANCH} > /QWC2_GIT_BRANCH
 echo ${QWC2_GIT_REPOSITORY} > /QWC2_GIT_REPOSITORY
+tail -f /var/log/clone-qwc2.log &
+tail -f /var/log/build-qwc2.log &
+tail -f /var/log/upd-qwc2-themes.log &
 exit
