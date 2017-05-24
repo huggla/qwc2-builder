@@ -26,5 +26,5 @@ else
  && echo 'Done!'
 fi
 cd $startdir
-} >> /var/log/stdout+stderr.log 2>&1
+} 2>&1 | tee -a /var/log/stdout+stderr.log
 exit
