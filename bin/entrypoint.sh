@@ -29,9 +29,11 @@ then
     chown ${USER}:${USER} /home/user/.ssh/authorized_keys
     chmod u=rw,go= /home/user/.ssh/authorized_keys
 fi
-tail -f /var/log/clone-qwc2.log &
-tail -f /var/log/build-qwc2.log &
-tail -f /var/log/upd-qwc2-themes.log &
+tail -f /var/log/stdout+stderr.log &
+{
+echo ${QWC2_GIT_BRANCH} > /QWC2_GIT_BRANCH
+echo ${QWC2_GIT_REPOSITORY} > /QWC2_GIT_REPOSITORY
+
 if [ -s /run/secrets/user-pw ]
 then
     echo 'Starting ssh with password authentication enabled'
@@ -42,6 +44,5 @@ else
     echo "dropbear -FREsjkmwp ${SSH_PORT}"
     dropbear -FREsjkmwp ${SSH_PORT}
 fi
-echo ${QWC2_GIT_BRANCH} > /QWC2_GIT_BRANCH
-echo ${QWC2_GIT_REPOSITORY} > /QWC2_GIT_REPOSITORY
+} > /var/log/stdout+stderr.log 2>&1
 exit
