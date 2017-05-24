@@ -6,11 +6,9 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && cp /etc/shadow /etc/shadow.org \
  && adduser --gecos '' user \
  && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.cache /home/user/.config/yarn/global /root/.config \
- && chown :user /usr/local/src /qwc2 /qwc2conf \
- && chmod g+w /usr/local/src /qwc2 /qwc2conf \
  && touch /run/secrets/id_rsa /run/secrets/user-pw /home/user/.yarnrc /var/log/stdout+stderr.log \
  && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > /home/user/.ssh/config \
- && chown -R user:user /home/user /run/secrets/id_rsa /run/secrets/user-pw /var/log/stdout+stderr.log \
+ && chown -R user:user /usr/local/src /qwc2 /qwc2conf /home/user /run/secrets/id_rsa /run/secrets/user-pw /var/log/stdout+stderr.log \
  && chmod u=rwX,go= /home/user/.ssh \
  && chmod u=r,go= /run/secrets/id_rsa /run/secrets/user-pw /home/user/.ssh/config \
  && ln -s /run/secrets/id_rsa /home/user/.ssh/ \
