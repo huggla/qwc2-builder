@@ -45,4 +45,5 @@ else
     dropbear -FREsjkmwp ${SSH_PORT}
 fi
 } > /var/log/stdout+stderr.log 2>&1
+> /var/log/stdout+stderr.log
 exit
