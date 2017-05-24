@@ -1,5 +1,7 @@
 #!/bin/sh
 startdir=`pwd`
+read QWC2_GIT_BRANCH < /QWC2_GIT_BRANCH
+read QWC2_GIT_REPOSITORY < /QWC2_GIT_REPOSITORY
 gitcommand="git clone --recursive -b ${QWC2_GIT_BRANCH} ${QWC2_GIT_REPOSITORY}"
 cd /usr/local/src
 rm -rf qwc2-demo-app
