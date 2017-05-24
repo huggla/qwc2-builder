@@ -11,11 +11,11 @@ then
     cat /etc/shadow.org /run/secrets/user-pw > /etc/shadow
     echo ':17304:0:99999:7:::' >> /etc/shadow
 fi
-if [ -s /run/secrets/ssh-authorized_keys ] || [ -s /run/secrets/ssh-themeupdate-key ]
+if [ -s /run/secrets/authorized_keys ] || [ -s /run/secrets/ssh-themeupdate-key ]
 then
-    if [ -s /run/secrets/ssh-authorized_keys ]
+    if [ -s /run/secrets/authorized_keys ]
     then
-        cp /run/secrets/ssh-authorized_keys /home/user/.ssh/authorized_keys
+        cp /run/secrets/authorized_keys /home/user/.ssh/authorized_keys
         echo >> /home/user/.ssh/authorized_keys
     else
         > /home/user/.ssh/authorized_keys
