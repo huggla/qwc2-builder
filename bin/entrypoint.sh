@@ -39,4 +39,6 @@ else
     echo "dropbear -FREsjkmwp ${SSH_PORT}"
     dropbear -FREsjkmwp ${SSH_PORT}
 fi
+echo ${QWC2_GIT_BRANCH} > /QWC2_GIT_BRANCH
+echo ${QWC2_GIT_REPOSITORY} > /QWC2_GIT_REPOSITORY
 exit
