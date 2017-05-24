@@ -1,4 +1,5 @@
 #!/bin/sh
+{
 startdir=`pwd`
 read QWC2_GIT_BRANCH < /QWC2_GIT_BRANCH
 read QWC2_GIT_REPOSITORY < /QWC2_GIT_REPOSITORY
@@ -12,4 +13,5 @@ else
     $gitcommand
 fi
 cd $startdir
+} >> /var/log/stdout+stderr.log 2>&1
 exit
