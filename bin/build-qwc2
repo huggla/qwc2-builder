@@ -1,12 +1,12 @@
 #!/bin/sh
 {
 startdir=`pwd`
+cd /usr/local/src/qwc2-demo-app
 install="yarn install --cache-folder /home/user/.cache"
 configure="cp -rf /qwc2conf/* ./"
 update="yarn run prod --cache-folder /home/user/.cache"
 replace="rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/ /qwc2"
 chuser="chpst -u ${USER}"
-cd /usr/local/src/qwc2-demo-app
 echo
 if [ "`id -u`" -eq 0 ]
 then
@@ -24,6 +24,7 @@ else
  && $update \
  && echo 'Please wait, copying files to /qwc2...' \
  && $replace \
+ && rm -rf /usr/local/src/qwc2-demo-app/{,.[!.],..?}* \
  && echo 'DONE!'
 fi
 cd $startdir
