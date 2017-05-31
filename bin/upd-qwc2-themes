@@ -3,7 +3,7 @@
 startdir=`pwd`
 chuser="chpst -u ${USER}"
 configure="cp -rf /qwc2conf/* /qwc2"
-update="yarn run themesconfig --cache-folder /home/user/.cache"
+update="yarn run themesconfig --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
 cd /qwc2
 echo
 if [ "`id -u`" -eq 0 ]
