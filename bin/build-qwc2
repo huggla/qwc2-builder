@@ -5,7 +5,7 @@ cd /usr/local/src/qwc2-demo-app
 install="yarn install --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
 configure="cp -rf /qwc2conf/* ./"
 update="yarn run prod --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
-replace="rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod /qwc2"
+replace="rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2"
 chuser="chpst -u ${USER}"
 echo
 if [ "`id -u`" -eq 0 ]
