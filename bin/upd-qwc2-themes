@@ -13,7 +13,7 @@
     && chmod o-x /root
   else
        $configure \
-    && $update \
+    && $update
   fi
   cd $startdir
   echo 'DONE!'
