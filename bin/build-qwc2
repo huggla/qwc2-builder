@@ -5,7 +5,10 @@
   install="yarn install --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
   configure="cp -rf /qwc2conf/* ./"
   update="yarn run prod --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
-  replace="echo 'Please wait, copying files to /qwc2...' && rsync --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/ /qwc2 && rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2 && rm -rf /usr/local/src/qwc2-demo-app/{,.[!.],..?}*"
+  pleasewait="echo 'Please wait, copying files to /qwc2...'"
+  replace1="rsync --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/ /qwc2"
+  replace2="rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2"
+  cleanup="rm -rf /usr/local/src/qwc2-demo-app/{,.[!.],..?}*"
   chuser="chpst -u ${USER}"
   echo ''
   if [ "`id -u`" -eq 0 ]
@@ -15,12 +18,18 @@
    && $chuser $configure \
    && $chuser $update \
    && chmod o-x /root \
-   && $chuser $replace
+   && $pleasewait \
+   && $chuser $replace1 \
+   && $chuser $replace2 \
+   && $cleanup
   else
       $install \
    && $configure \
    && $update \
-   && $replace
+   && $pleasewait \
+   && $replace1 \
+   && $replace2 \
+   && $cleanup
   fi
   echo 'DONE!'
   cd $startdir
