@@ -6,8 +6,8 @@
   configure="cp -rf /qwc2conf/* ./"
   update="yarn run prod --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
   pleasewait="echo 'Please wait, copying files to /qwc2...'"
-  replace1="rsync --copy-links --size-only /usr/local/src/qwc2-demo-app/ /qwc2"
-  replace2="rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2"
+  replace1="rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2"
+  replace2="rsync --copy-links --ignore-existing --size-only /usr/local/src/qwc2-demo-app/ /qwc2"
   cleanup="rm -rf /usr/local/src/qwc2-demo-app/{,.[!.],..?}*"
   chuser="chpst -u ${USER}"
   echo ''
