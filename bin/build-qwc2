@@ -1,27 +1,27 @@
 #!/bin/sh
 {
-startdir=`pwd`
-cd /usr/local/src/qwc2-demo-app
-install="yarn install --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
-configure="cp -rf /qwc2conf/* ./"
-update="yarn run prod --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
-replace="echo 'Please wait, copying files to /qwc2...' && rsync --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/ /qwc2 && rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2 && rm -rf /usr/local/src/qwc2-demo-app/{,.[!.],..?}* && echo 'DONE!'"
-chuser="chpst -u ${USER}"
-echo
-if [ "`id -u`" -eq 0 ]
-then
-    chmod o+x /root \
- && $chuser $install \
- && $chuser $configure \
- && $chuser $update \
- && chmod o-x /root \
- && $chuser $replace
-else
-    $install \
- && $configure \
- && $update \
- && $replace
-fi
-cd $startdir
+  startdir=`pwd`
+  cd /usr/local/src/qwc2-demo-app
+  install="yarn install --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
+  configure="cp -rf /qwc2conf/* ./"
+  update="yarn run prod --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
+  replace="echo 'Please wait, copying files to /qwc2...' && rsync --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/ /qwc2 && rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2 && rm -rf /usr/local/src/qwc2-demo-app/{,.[!.],..?}* && echo 'DONE!'"
+  chuser="chpst -u ${USER}"
+  echo
+  if [ "`id -u`" -eq 0 ]
+  then
+      chmod o+x /root \
+   && $chuser $install \
+   && $chuser $configure \
+   && $chuser $update \
+   && chmod o-x /root \
+   && $chuser $replace
+  else
+      $install \
+   && $configure \
+   && $update \
+   && $replace
+  fi
+  cd $startdir
 } 2>&1 | tee -a /var/log/stdout+stderr.log &
 exit
