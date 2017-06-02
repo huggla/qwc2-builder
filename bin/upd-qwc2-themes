@@ -4,14 +4,22 @@ startdir=`pwd`
 chuser="chpst -u ${USER}"
 configure="cp -rf /qwc2conf/* /qwc2"
 update="yarn run themesconfig --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
-done="cd $startdir && echo '' && echo 'DONE!'"
 cd /qwc2
-echo ''
+echo
 if [ "`id -u`" -eq 0 ]
 then
-    $chuser $configure && $chuser $update && $done &
+    chmod o+x /root \
+ && $chuser $configure \
+ && $chuser $update \
+ && chmod o-x /root
 else
-    $configure && $update && $done &
+    chmod o+x /root \
+ && $configure \
+ && $update \
+ && chmod o-x /root 
 fi
+cd $startdir
+echo
+echo 'DONE!'
 } 2>&1 | tee -a /var/log/stdout+stderr.log
 exit
