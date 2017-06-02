@@ -7,7 +7,7 @@
   update="yarn run prod --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
   replace="echo 'Please wait, copying files to /qwc2...' && rsync --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/ /qwc2 && rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2 && rm -rf /usr/local/src/qwc2-demo-app/{,.[!.],..?}*"
   chuser="chpst -u ${USER}"
-  echo
+  echo ''
   if [ "`id -u`" -eq 0 ]
   then
       chmod o+x /root \
