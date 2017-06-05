@@ -2,6 +2,7 @@
 {
   startdir=`pwd`
   cd /usr/local/src/qwc2-demo-app
+  createyarnrc="touch /usr/local/src/qwc2-demo-app/yarnrc"
   install="yarn install --cache-folder ./cache --global-folder ./global"
   addreactcolor="yarn add react-color"
   configure="cp -rf /qwc2conf/* ./"
@@ -15,6 +16,7 @@
   if [ "`id -u`" -eq 0 ]
   then
       chmod o+x /root \
+   && $chuser $createyarnrc \
    && $chuser $install \
    && $chuser $addreactcolor \
    && $chuser $configure \
@@ -25,7 +27,8 @@
    && $chuser $replace2 \
    && $cleanup
   else
-      $install \
+      $createyarnrc \
+   && $install \
    && $addreactcolor \
    && $configure \
    && $update \
