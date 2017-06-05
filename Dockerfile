@@ -5,15 +5,15 @@ COPY ./bin/* /usr/local/bin/
 RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && cp /etc/shadow /etc/shadow.org \
  && adduser --gecos '' user \
- && mkdir -p /usr/local/src /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.cache /home/user/.config/yarn/global /root/.config \
- && touch /run/secrets/id_rsa /run/secrets/user-pw /home/user/.yarnrc /var/log/stdout+stderr.log \
+ && mkdir -p /usr/local/src/qwc2-demo-app /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.cache /home/user/.config/yarn/global /root/.config \
+ && touch /run/secrets/id_rsa /run/secrets/user-pw /usr/local/src/qwc2-demo-app/yarnrc /var/log/stdout+stderr.log \
  && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > /home/user/.ssh/config \
- && chown -R user:user /usr/local/src /qwc2 /qwc2conf /home/user /run/secrets/id_rsa /run/secrets/user-pw /var/log/stdout+stderr.log \
+ && chown -R user:user /usr/local/src/qwc2-demo-app /qwc2 /qwc2conf /home/user /run/secrets/id_rsa /run/secrets/user-pw /var/log/stdout+stderr.log \
  && chmod u=rwX,go= /home/user/.ssh \
  && chmod u=r,go= /run/secrets/id_rsa /run/secrets/user-pw /home/user/.ssh/config \
  && ln -s /run/secrets/id_rsa /home/user/.ssh/ \
- && ln -s /home/user/.config/yarn /root/.config/ \
- && ln -s /home/user/.yarnrc /root/ \
+ && ln -s /usr/local/src/qwc2-demo-app /root/.config/yarn \
+ && ln -s /usr/local/src/qwc2-demo-app/yarnrc /root/ \
  && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
