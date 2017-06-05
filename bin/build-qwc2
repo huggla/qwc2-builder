@@ -33,5 +33,6 @@
   fi
   echo 'DONE!'
   cd $startdir
+  :
 } 2>&1 | tee -a /var/log/stdout+stderr.log &
 exit
