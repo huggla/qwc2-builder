@@ -3,18 +3,22 @@
   startdir=`pwd`
   chuser="chpst -u ${USER}"
   configure="cp -rf /qwc2conf/* /qwc2"
-  update="yarn run themesconfig --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
+  createyarnrc="touch /usr/local/src/qwc2-demo-app/yarnrc"
+  update="yarn run themesconfig --cache-folder /usr/local/src/qwc2-demo-app/cache --global-folder /usr/local/src/qwc2-demo-app/global"
   cd /qwc2
   if [ "`id -u`" -eq 0 ]
   then
        chmod o+x /root \
+    && $chuser $createyarnrc \
     && $chuser $configure \
     && $chuser $update \
     && chmod o-x /root
   else
-       $configure \
+       $createyarnrc \
+    && $configure \
     && $update
   fi
+  rm -rf /usr/local/src/qwc2-demo-app/{,.[!.],..?}*
   cd $startdir
   echo 'DONE!'
 } 2>&1 | tee -a /var/log/stdout+stderr.log
