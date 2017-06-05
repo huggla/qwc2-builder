@@ -1,10 +1,11 @@
 #!/bin/sh
 {
   startdir=`pwd`
+  yarnparams="--cache-folder /usr/local/src/qwc2-demo-app/cache --global-folder /usr/local/src/qwc2-demo-app/global"
   chuser="chpst -u ${USER}"
   configure="cp -rf /qwc2conf/* /qwc2"
   createyarnrc="touch /usr/local/src/qwc2-demo-app/yarnrc"
-  update="yarn run themesconfig --cache-folder /usr/local/src/qwc2-demo-app/cache --global-folder /usr/local/src/qwc2-demo-app/global"
+  update="yarn run themesconfig $yarnparams"
   cd /qwc2
   if [ "`id -u`" -eq 0 ]
   then
