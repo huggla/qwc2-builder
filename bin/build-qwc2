@@ -2,8 +2,8 @@
 {
   startdir=`pwd`
   cd /usr/local/src/qwc2-demo-app
-  install="yarn install --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
-  addreactcolor="yarn add react-color"
+  install="yarn install --force --check-files --cache-folder ./cache --global-folder ./global"
+  #addreactcolor="yarn add react-color"
   configure="cp -rf /qwc2conf/* ./"
   update="yarn run prod --cache-folder /home/user/.cache --global-folder /home/user/.config/yarn/global"
   pleasewait="echo 'Please wait, copying files to /qwc2...'"
@@ -16,7 +16,7 @@
   then
       chmod o+x /root \
    && $chuser $install \
-   && $chuser $addreactcolor \
+   #&& $chuser $addreactcolor \
    && $chuser $configure \
    && $chuser $update \
    && chmod o-x /root \
@@ -26,7 +26,7 @@
    && $cleanup
   else
       $install \
-   && $addreactcolor \
+   #&& $addreactcolor \
    && $configure \
    && $update \
    && $pleasewait \
