@@ -2,11 +2,12 @@
 {
   startdir=`pwd`
   cd /usr/local/src/qwc2-demo-app
+  yarnparams="--cache-folder /usr/local/src/qwc2-demo-app/cache --global-folder /usr/local/src/qwc2-demo-app/global"
   createyarnrc="touch /usr/local/src/qwc2-demo-app/yarnrc"
-  install="yarn install --cache-folder ./cache --global-folder ./global"
-  addreactcolor="yarn add react-color --cache-folder ./cache --global-folder ./global"
+  install="yarn install $yarnparams"
+  addreactcolor="yarn add react-color $yarnparams"
   configure="cp -rf /qwc2conf/* ./"
-  update="yarn run prod --cache-folder ./cache --global-folder ./global"
+  update="yarn run prod $yarnparams"
   pleasewait="echo 'Please wait, copying files to /qwc2...'"
   replace1="rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2"
   replace2="rsync --recursive --copy-links --ignore-existing --size-only --exclude '*/' --include 'qwc2/' /usr/local/src/qwc2-demo-app/* /qwc2"
