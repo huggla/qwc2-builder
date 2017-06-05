@@ -8,7 +8,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && mkdir -p /usr/local/src/qwc2-demo-app /etc/dropbear /qwc2 /qwc2conf /run/secrets /home/user/.ssh /home/user/.cache /home/user/.config/yarn/global /root/.config \
  && touch /run/secrets/id_rsa /run/secrets/user-pw /usr/local/src/qwc2-demo-app/yarnrc /var/log/stdout+stderr.log \
  && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > /home/user/.ssh/config \
- && chown -R user:user /usr/local/src/qwc2-demo-app /qwc2 /qwc2conf /home/user /run/secrets/id_rsa /run/secrets/user-pw /var/log/stdout+stderr.log \
+ && chown -R user:user /usr/local/src /qwc2 /qwc2conf /home/user /run/secrets/id_rsa /run/secrets/user-pw /var/log/stdout+stderr.log \
  && chmod u=rwX,go= /home/user/.ssh \
  && chmod u=r,go= /run/secrets/id_rsa /run/secrets/user-pw /home/user/.ssh/config \
  && ln -s /run/secrets/id_rsa /home/user/.ssh/ \
@@ -22,7 +22,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && ln -s /sbin/start-stop-daemon /usr/bin \
  && apt-get update -qq \
  && apt-get install -yq nano dropbear-bin git nodejs yarn \
- && rm -rf /var/lib/apt/lists/* \
+ && rm -rf /var/lib/apt/lists/* /usr/local/src/qwc2-demo-app
 
 VOLUME /qwc2 /qwc2conf /run/secrets
 
