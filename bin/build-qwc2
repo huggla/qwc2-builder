@@ -1,42 +1,25 @@
 #!/bin/sh
 {
-  startdir=`pwd`
-  cd /usr/local/src/qwc2-demo-app
-  yarnparams="--cache-folder /usr/local/src/qwc2-demo-app/cache --global-folder /usr/local/src/qwc2-demo-app/global"
-  createyarnrc="touch /usr/local/src/qwc2-demo-app/yarnrc"
-  install="yarn install $yarnparams"
-  addreactcolor="yarn add react-color $yarnparams"
-  configure="cp -rf /qwc2conf/* ./"
-  update="yarn run prod $yarnparams"
-  pleasewait="echo 'Please wait, copying files to /qwc2...'"
-  replace1="rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2"
-  replace2="rsync --recursive --copy-links --ignore-existing --size-only --exclude '*/' --include 'qwc2/' /usr/local/src/qwc2-demo-app/* /qwc2"
-  chuser="chpst -u ${USER}"
-  echo ''
-  if [ "`id -u`" -eq 0 ]
-  then
-      chmod o+x /root \
-   && $chuser $createyarnrc \
-   && $chuser $install \
-   && $chuser $addreactcolor \
-   && $chuser $configure \
-   && $chuser $update \
-   && chmod o-x /root \
-   && $pleasewait \
-   && $chuser $replace1 \
-   && $chuser $replace2
-  else
-      $createyarnrc \
-   && $install \
-   && $addreactcolor \
-   && $configure \
-   && $update \
-   && $pleasewait \
-   && $replace1 \
-   && $replace2
-  fi
-  rm -rf /usr/local/src/qwc2-demo-app/{,.[!.],..?}*
-  echo 'DONE!'
-  cd $startdir
+    echo ''
+    startdir=`pwd`
+    buildmain=
+        "yarn install \
+      && cp -rf /qwc2conf/* ./ \
+      && yarn run prod \
+      && echo 'Please wait, copying files to /qwc2...' \
+      && rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2 \
+      && rsync --recursive --copy-links --ignore-existing --size-only --exclude '*/' --include 'qwc2/' /usr/local/src/qwc2-demo-app/* /qwc2 \
+      && echo 'QWC2 build successfull!' \
+      || echo 'QWC2 build FAILED'"
+    build="cd /usr/local/src/qwc2-demo-app && $buildmain"
+    buildstart="$build || /usr/local/bin/clone-qwc2 && $build || echo 'QWC2 clone FAILED'"
+    if [ "`id -u`" -eq 0 ]
+    then
+        chpst -u ${USER} /bin/sh -c "HOME=/home/user && $buildstart"
+    else
+        $buildstart
+    fi
+    rm -rf /usr/local/src/qwc2-demo-app
+    cd $startdir
 } 2>&1 | tee -a /var/log/stdout+stderr.log &
 exit
