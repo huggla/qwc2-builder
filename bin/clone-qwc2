@@ -8,7 +8,7 @@
   rm -rf qwc2-demo-app
   if [ "`id -u`" -eq 0 ]
   then
-    chpst -u ${USER} $gitcommand
+    chpst -u ${USER} "/bin/sh -c 'HOME=/home/user && $gitcommand'"
   else
     $gitcommand
   fi
