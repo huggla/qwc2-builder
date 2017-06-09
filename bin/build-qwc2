@@ -4,12 +4,13 @@
     startdir=`pwd`
     a='yarn install '
     b='&& cp -rf /qwc2conf/* ./ '
+    b2='&& yarn upgrade '
     c='&& yarn run prod '
     d='&& echo "Please wait, copying files to /qwc2..." '
     e='&& rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2 '
     f='&& rsync --recursive --copy-links --ignore-existing --size-only --exclude "*/" --include "qwc2/" /usr/local/src/qwc2-demo-app/* /qwc2 '
     g='&& echo "QWC2 build successfull!" '
-    buildmain=$a$b$c$d$e$f$g
+    buildmain=$a$b$b2$c$d$e$f$g
     i='cd /usr/local/src/qwc2-demo-app && '
     build=$i$buildmain
     j='|| /usr/local/bin/clone-qwc2 && '
