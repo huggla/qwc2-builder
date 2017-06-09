@@ -2,24 +2,30 @@
 {
     echo ''
     startdir=`pwd`
-    buildmain=
-        "yarn install \
-      && cp -rf /qwc2conf/* ./ \
-      && yarn run prod \
-      && echo 'Please wait, copying files to /qwc2...' \
-      && rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2 \
-      && rsync --recursive --copy-links --ignore-existing --size-only --exclude '*/' --include 'qwc2/' /usr/local/src/qwc2-demo-app/* /qwc2 \
-      && echo 'QWC2 build successfull!' \
-      || echo 'QWC2 build FAILED'"
-    build="cd /usr/local/src/qwc2-demo-app && $buildmain"
-    buildstart="$build || /usr/local/bin/clone-qwc2 && $build || echo 'QWC2 clone FAILED'"
+    a='yarn install '
+    b='&& cp -rf /qwc2conf/* ./ '
+    c='&& yarn run prod '
+    d='&& echo "Please wait, copying files to /qwc2..." '
+    e='&& rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2 '
+    f='&& rsync --recursive --copy-links --ignore-existing --size-only --exclude "*/" --include "qwc2/" /usr/local/src/qwc2-demo-app/* /qwc2 '
+    g='&& echo "QWC2 build successfull!" '
+    buildmain=$a$b$c$d$e$f$g
+    i='cd /usr/local/src/qwc2-demo-app && '
+    build=$i$buildmain
+    j='|| /usr/local/bin/clone-qwc2 && '
+    k=' || echo "QWC2 build FAILED"'
+    buildstart=$build$j$build$k
     if [ "`id -u`" -eq 0 ]
     then
-        chpst -u ${USER} /bin/sh -c "HOME=/home/user && $buildstart"
+        l='HOME=/home/user && '
+        buildstart=$l$buildstart
+#echo $buildstart
+#exit
+        chpst -u ${USER} /bin/sh -c "$buildstart"
     else
         $buildstart
     fi
-    rm -rf /usr/local/src/qwc2-demo-app
-    cd $startdir
+#    rm -rf /usr/local/src/qwc2-demo-app
+#    cd $startdir
 } 2>&1 | tee -a /var/log/stdout+stderr.log &
 exit
