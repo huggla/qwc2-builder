@@ -12,7 +12,7 @@
     F='yarn run prod'
     G='echo "Please wait, copying files to /qwc2..."'
     H='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2'
-    I='rsync --recursive --copy-links --ignore-existing --size-only --exclude "*/" --include "qwc2/" /usr/local/src/qwc2-demo-app/* /qwc2'
+    I='rsync --recursive --copy-links --ignore-existing --size-only --include "qwc2/" --exclude "*/" /usr/local/src/qwc2-demo-app/* /qwc2'
     J='echo "QWC2 build successfull!"'
     BUILD=$A$and$B$and$C$and$D$and$E$and$F$and$G$and$H$and$I$and$J
     CLONE='/usr/local/bin/clone-qwc2'
