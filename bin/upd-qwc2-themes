@@ -2,19 +2,21 @@
 {
   startdir=`pwd`
   and=' && '
+  or=' || '
   A='cd /qwc2'
   B='cp -rf /qwc2conf/* /qwc2'
   C='yarn run themesconfig'
-  UPDATE=$A$and$B$and$C
+  D='echo "Theme update successfull!"'
+  E='echo "Theme update FAILED"'
+  UPDATE=$A$and$B$and$C$and$D$or$E
   if [ "`id -u`" -eq 0 ]
   then
-    C='HOME=/home/user'
-    UPDATE=$C$and$UPDATE
+    SETHOME='HOME=/home/user'
+    UPDATE=$SETHOME$and$UPDATE
     chpst -u ${USER} /bin/sh -c "$UPDATE"
   else
     $UPDATE
   fi
   cd $startdir
-  echo 'DONE!'
 } 2>&1 | tee -a /var/log/stdout+stderr.log
 exit
