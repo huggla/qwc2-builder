@@ -1,25 +1,19 @@
 #!/bin/sh
 {
   startdir=`pwd`
-  yarnparams="--cache-folder /usr/local/src/qwc2-demo-app/cache --global-folder /usr/local/src/qwc2-demo-app/global"
-  chuser="chpst -u ${USER}"
-  configure="cp -rf /qwc2conf/* /qwc2"
-  createyarnrc="touch /usr/local/src/qwc2-demo-app/yarnrc"
-  update="yarn run themesconfig $yarnparams"
-  cd /qwc2
+  and=' && '
+  A='cd /qwc2'
+  B='cp -rf /qwc2conf/* /qwc2'
+  C='yarn run themesconfig'
+  UPDATE=$A$and$B$and$C
   if [ "`id -u`" -eq 0 ]
   then
-       chmod o+x /root \
-    && $chuser $createyarnrc \
-    && $chuser $configure \
-    && $chuser $update \
-    && chmod o-x /root
+    C='HOME=/home/user'
+    UPDATE=$C$and$UPDATE
+    chpst -u ${USER} /bin/sh -c "$UPDATE"
   else
-       $createyarnrc \
-    && $configure \
-    && $update
+    $UPDATE
   fi
-  rm -rf /usr/local/src/qwc2-demo-app/{,.[!.],..?}*
   cd $startdir
   echo 'DONE!'
 } 2>&1 | tee -a /var/log/stdout+stderr.log
