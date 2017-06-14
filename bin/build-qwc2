@@ -24,7 +24,7 @@
         BUILD=$SETHOME$and$BUILD
         chpst -u ${USER} /bin/sh -c "$BUILD"
     else
-        $BUILD
+        eval $BUILD
     fi
     rm -rf /usr/local/src/qwc2-demo-app
     cd $startdir
