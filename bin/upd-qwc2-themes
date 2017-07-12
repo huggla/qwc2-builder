@@ -15,8 +15,9 @@
     UPDATE=$SETHOME$and$UPDATE
     chpst -u ${USER} /bin/sh -c "$UPDATE"
   else
-    $UPDATE
+    eval $UPDATE
   fi
+  EXITCODE=$?
   cd $startdir
 } 2>&1 | tee -a /var/log/stdout+stderr.log
-exit
+exit $EXITCODE
