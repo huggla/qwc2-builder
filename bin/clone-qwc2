@@ -12,7 +12,13 @@
   else
     $gitcommand
   fi
+  EXITCODE=$?
   cd $startdir
-  echo 'DONE!'
+  if [ $EXITCODE -eq 0 ]
+  then
+    echo "QWC2 clone successfull!"
+  else
+    echo "QWC2 build FAILED"
+  fi
+  exit $EXITCODE
 } 2>&1 | tee -a /var/log/stdout+stderr.log
-exit
