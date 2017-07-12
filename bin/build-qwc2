@@ -1,32 +1,44 @@
 #!/bin/sh
+
+if [ ! -d "/usr/local/src/qwc2-demo-app" ]
+then
+   CLONE=1
+   /usr/local/bin/clone-qwc2
+   if [ ! $? -eq 0 ]
+   then
+       exit $?
+   fi
+fi
+and=' && '
+A='HOME=/home/user'
+B='cd /usr/local/src/qwc2-demo-app'
+C='yarn install'
+D='cp -rf /qwc2conf/* ./'
+E='yarn upgrade'
+F='yarn run tsupdate'
+G='yarn run prod'
+H='echo "Please wait, copying files to /qwc2..."'
+I='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2'
+J='rsync --recursive --copy-links --ignore-existing --size-only --include "qwc2/" --exclude "*/" /usr/local/src/qwc2-demo-app/* /qwc2'
+BUILD=$A$and$B$and$C$and$D$and$E$and$F$and$G$and$H$and$I$and$J
 {
-    echo ''
-    startdir=`pwd`
-    and=' && '
-    or=' || '
-    A='cd /usr/local/src/qwc2-demo-app'
-    B='yarn install'
-    C='cp -rf /qwc2conf/* ./'
-    D='yarn upgrade'
-    E='yarn run tsupdate'
-    F='yarn run prod'
-    G='echo "Please wait, copying files to /qwc2..."'
-    H='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/ /qwc2'
-    I='rsync --recursive --copy-links --ignore-existing --size-only --include "qwc2/" --exclude "*/" /usr/local/src/qwc2-demo-app/* /qwc2'
-    J='echo "QWC2 build successfull!"'
-    BUILD=$A$and$B$and$C$and$D$and$E$and$F$and$G$and$H$and$I$and$J
-    CLONE='/usr/local/bin/clone-qwc2'
-    FAIL='echo "QWC2 build FAILED"'
-    BUILD=$BUILD$or$CLONE$and$BUILD$or$FAIL
     if [ "`id -u`" -eq 0 ]
     then
-        SETHOME='HOME=/home/user'
-        BUILD=$SETHOME$and$BUILD
         chpst -u ${USER} /bin/sh -c "$BUILD"
     else
         eval $BUILD
     fi
-    rm -rf /usr/local/src/qwc2-demo-app
-    cd $startdir
+    EXITCODE=$?
+    if [ $EXITCODE -eq 0 ]
+    then
+        echo "QWC2 build successfull!"
+    else
+        echo "QWC2 build FAILED"
+    fi
+    if [ $CLONE -eq 1 ]
+    then
+        rm -rf /usr/local/src/qwc2-demo-app
+    fi
+    exit $EXITCODE
 } 2>&1 | tee -a /var/log/stdout+stderr.log &
-exit
+
