@@ -35,7 +35,7 @@ BUILD=$A$and$B$and$C$and$D$and$E$and$F$and$G$and$H$and$I$and$J
     else
         echo "QWC2 build FAILED"
     fi
-    if [ $CLONE -eq 1 ]
+    if [ $CLONE ]
     then
         rm -rf /usr/local/src/qwc2-demo-app
     fi
