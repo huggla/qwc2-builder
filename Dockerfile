@@ -20,7 +20,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && ln -s /sbin/ldconfig /usr/bin \
  && ln -s /sbin/start-stop-daemon /usr/bin \
  && apt-get update -qq \
- && apt-get install -yq nano dropbear-bin git nodejs yarn \
+ && apt-get install -yq nano rsync dropbear-bin git nodejs yarn \
  && rm -rf /var/lib/apt/lists/* /usr/local/src/qwc2-demo-app
 
 VOLUME /qwc2 /qwc2conf /run/secrets
