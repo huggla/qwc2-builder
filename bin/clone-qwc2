@@ -3,22 +3,24 @@
   startdir=`pwd`
   read QWC2_GIT_BRANCH < /QWC2_GIT_BRANCH
   read QWC2_GIT_REPOSITORY < /QWC2_GIT_REPOSITORY
-  gitcommand="HOME=/home/user && git clone --recursive -b ${QWC2_GIT_BRANCH} ${QWC2_GIT_REPOSITORY}"
+  setUserHome="HOME=/home/user"
+  and=" && "
+  gitClone="git clone --recursive -b ${QWC2_GIT_BRANCH} ${QWC2_GIT_REPOSITORY}"
   cd /usr/local/src
   rm -rf qwc2-demo-app
   if [ "`id -u`" -eq 0 ]
   then
-    chpst -u ${USER} /bin/sh -c "$gitcommand"
+    chpst -u ${USER} /bin/sh -c "$setUserHome$and$gitClone"
   else
-    $gitcommand
+    $gitClone
   fi
   EXITCODE=$?
   cd $startdir
   if [ $EXITCODE -eq 0 ]
-  then
+    then
     echo "QWC2 clone successfull!"
   else
-    echo "QWC2 build FAILED"
+    echo "QWC2 clone FAILED"
   fi
   exit $EXITCODE
 } 2>&1 | tee -a /var/log/stdout+stderr.log
