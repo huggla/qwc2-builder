@@ -1,13 +1,11 @@
 #!/bin/sh
-
 if [ ! -d "/usr/local/src/qwc2-demo-app" ]
 then
    CLONE=1
-   echo "No local source found, reading source from Github..."
    /usr/local/bin/clone-qwc2
    if [ ! $? -eq 0 ]
    then
-       exit $?
+      exit $?
    fi
 fi
 and=' && '
@@ -23,6 +21,12 @@ I='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-
 J='rsync --recursive --copy-links --ignore-existing --size-only --include "qwc2/" --exclude "*/" /usr/local/src/qwc2-demo-app/* /qwc2'
 BUILD=$A$and$B$and$C$and$D$and$E$and$F$and$G$and$H$and$I$and$J
 {
+    if [ $CLONE ]
+    then
+       echo "No local source code found, building from Github source code..."
+    else
+       echo "Building from local source code..."
+    fi
     if [ "`id -u`" -eq 0 ]
     then
         chpst -u ${USER} /bin/sh -c "$BUILD"
