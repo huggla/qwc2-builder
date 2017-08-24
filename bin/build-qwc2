@@ -3,6 +3,7 @@
 if [ ! -d "/usr/local/src/qwc2-demo-app" ]
 then
    CLONE=1
+   echo "No local source found, reading source from Github..."
    /usr/local/bin/clone-qwc2
    if [ ! $? -eq 0 ]
    then
@@ -37,6 +38,7 @@ BUILD=$A$and$B$and$C$and$D$and$E$and$F$and$G$and$H$and$I$and$J
     fi
     if [ $CLONE ]
     then
+        echo "Removing temporary files..."
         rm -rf /usr/local/src/qwc2-demo-app
     fi
     exit $EXITCODE
