@@ -26,7 +26,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
 VOLUME /qwc2 /qwc2conf /run/secrets
 
 ENV USER=user
-ENV SSH_ADDRESS=
+ENV SSH_ADDRESS=0.0.0.0
 ENV SSH_PORT=22
 ENV QWC2_GIT_REPOSITORY=https://github.com/qgis/qwc2-demo-app.git
 ENV QWC2_GIT_BRANCH=master
