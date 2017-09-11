@@ -35,12 +35,12 @@ tail -f /var/log/stdout+stderr.log &
   if [ -s /run/secrets/user-pw ]
   then
     echo 'Starting ssh with password authentication enabled'
-    echo "dropbear -FREjkmwp ${SSH_PORT}"
-    dropbear -FREjkmwp ${SSH_PORT}
+    echo "dropbear -FREjkmwp ${SSH_ADDRESS}:${SSH_PORT}"
+    dropbear -FREjkmwp ${SSH_ADDRESS}:${SSH_PORT}
   else
     echo 'Starting ssh with public key authentication'
-    echo "dropbear -FREsjkmwp ${SSH_PORT}"
-    dropbear -FREsjkmwp ${SSH_PORT}
+    echo "dropbear -FREsjkmwp ${SSH_ADDRESS}:${SSH_PORT}"
+    dropbear -FREsjkmwp ${SSH_ADDRESS}:${SSH_PORT}
   fi
 } > /var/log/stdout+stderr.log 2>&1
 exit
