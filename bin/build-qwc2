@@ -29,6 +29,10 @@ BUILD=$A$and$B$and$C$and$D$and$E$and$F$and$G$and$H$and$I$and$J$and$K$and$L
     else
        echo "Building from local source code..."
     fi
+    if [ -s /usr/local/src/qwc2-demo-app/yarn.lock ]
+    then
+        rm /usr/local/src/qwc2-demo-app/yarn.lock
+    fi
     if [ "`id -u`" -eq 0 ]
     then
         chpst -u ${USER} /bin/sh -c "$BUILD"
