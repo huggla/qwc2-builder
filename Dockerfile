@@ -1,4 +1,4 @@
-FROM blitznote/debootstrap-amd64:16.10
+FROM blitznote/debootstrap-amd64:17.04
 
 COPY ./bin/* /usr/local/bin/
 
