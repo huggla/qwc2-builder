@@ -13,7 +13,7 @@ RUN chmod u=rwx,go=rx /usr/local/bin/* \
  && chmod u=r,go= /run/secrets/id_rsa /run/secrets/user-pw /home/user/.ssh/config \
  && ln -s /run/secrets/id_rsa /home/user/.ssh/ \
  && ln -s /usr/local/src/qwc2-demo-app /home/user/.config/yarn \
- && curl -sL https://deb.nodesource.com/setup_7.x | bash - \
+ && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
  && ln -s /usr/local/bin/* /usr/bin \
