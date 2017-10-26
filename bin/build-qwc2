@@ -22,17 +22,13 @@ J='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-
 K='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/node_modules /usr/local/src/qwc2-demo-app/prod/'
 L='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/* /qwc2/'
 #BUILD=$A$and$B$and$C$and$D$and$E$and$F$and$G$and$H$and$I$and$J$and$K$and$L
-BUILD=$A$and$B$and$D$and$G$and$H$and$I$and$J$and$K$and$L
+BUILD=$A$and$B$and$C$and$D$and$F$and$G$and$H$and$I$and$J$and$K$and$L
 {
     if [ $CLONE ]
     then
        echo "No local source code found, building from Github source code..."
     else
        echo "Building from local source code..."
-    fi
-    if [ -s /usr/local/src/qwc2-demo-app/yarn.lock ]
-    then
-        rm /usr/local/src/qwc2-demo-app/yarn.lock
     fi
     if [ "`id -u`" -eq 0 ]
     then
