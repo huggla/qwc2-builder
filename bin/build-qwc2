@@ -13,7 +13,7 @@ A='HOME=/home/user'
 B='cd /usr/local/src/qwc2-demo-app'
 C='rsync --recursive --copy-links --size-only --exclude=kitty --exclude=updateThemes.* /qwc2conf/* /usr/local/src/qwc2-demo-app/'
 D='yarn install'
-E='yarn upgrade'
+E='yarn upgrade react-color'
 F='yarn run tsupdate'
 G='yarn run prod'
 H='echo "Please wait, copying files to /qwc2..."'
@@ -21,8 +21,7 @@ I='rsync --recursive --copy-links --size-only --exclude=kitty --exclude=updateTh
 J='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/qwc2 /usr/local/src/qwc2-demo-app/prod/'
 K='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/node_modules /usr/local/src/qwc2-demo-app/prod/'
 L='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/* /qwc2/'
-#BUILD=$A$and$B$and$C$and$D$and$E$and$F$and$G$and$H$and$I$and$J$and$K$and$L
-BUILD=$A$and$B$and$C$and$D$and$F$and$G$and$H$and$I$and$J$and$K$and$L
+BUILD=$A$and$B$and$C$and$D$and$E$and$F$and$G$and$H$and$I$and$J$and$K$and$L
 {
     if [ $CLONE ]
     then
