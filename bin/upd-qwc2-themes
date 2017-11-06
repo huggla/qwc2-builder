@@ -5,7 +5,6 @@
   or=' || '
   A='cd /qwc2'
   B='rsync --recursive --copy-links --size-only --exclude=kitty --exclude=updateThemes.* /qwc2conf/* /qwc2/'
-  #B='rsync --recursive --copy-links --size-only --exclude=kitty --exclude=updateThemes.* /qwc2conf/* /qwc2/'
   C='yarn run themesconfig'
   D='echo "Theme update successfull!"'
   E='echo "Theme update FAILED"'
