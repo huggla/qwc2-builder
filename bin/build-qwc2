@@ -11,7 +11,7 @@ fi
 and=' && '
 A='HOME=/home/user'
 B='cd /usr/local/src/qwc2-demo-app'
-C='rsync --recursive --copy-links --size-only --exclude=kitty --exclude=updateThemes.* /qwc2conf/* /usr/local/src/qwc2-demo-app/'
+C='[ "$(ls -A /tmp)" ] && rsync --recursive --copy-links --size-only --exclude=kitty --exclude=updateThemes.* /qwc2conf/* /usr/local/src/qwc2-demo-app/'
 D='yarn install'
 E='yarn upgrade react-color'
 E2='yarn add uglifyjs-webpack-plugin'
