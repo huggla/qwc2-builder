@@ -11,7 +11,7 @@ fi
 and=' && '
 A='HOME=/home/user'
 B='cd /usr/local/src/qwc2-demo-app'
-C='[ "$(ls -A /tmp)" ] && rsync --recursive --copy-links --size-only --exclude=kitty --exclude=updateThemes.* /qwc2conf/* /usr/local/src/qwc2-demo-app/'
+C='rsync --recursive --copy-links --size-only --exclude=kitty --exclude=updateThemes.* /qwc2conf/* /usr/local/src/qwc2-demo-app/'
 D='yarn install'
 E='yarn upgrade react-color'
 E2='yarn add uglifyjs-webpack-plugin'
@@ -22,7 +22,12 @@ I='rsync --recursive --copy-links --size-only --exclude=kitty --exclude=updateTh
 J='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/qwc2 /usr/local/src/qwc2-demo-app/prod/'
 K='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/node_modules /usr/local/src/qwc2-demo-app/prod/'
 L='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/* /qwc2/'
-BUILD=$A$and$B$and$C$and$D$and$E$and$E2$and$F$and$G$and$H$and$I$and$J$and$K$and$L
+if [ `ls -A /qgis2conf` ]
+then
+   BUILD=$A$and$B$and$C$and$D$and$E$and$E2$and$F$and$G$and$H$and$I$and$J$and$K$and$L
+else
+   BUILD=$A$and$B$and$D$and$E$and$E2$and$F$and$G$and$H$and$J$and$K$and$L
+fi
 {
     if [ $CLONE ]
     then
