@@ -22,7 +22,7 @@ I='rsync --recursive --copy-links --size-only --exclude=kitty --exclude=updateTh
 J='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/qwc2 /usr/local/src/qwc2-demo-app/prod/'
 K='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/node_modules /usr/local/src/qwc2-demo-app/prod/'
 L='rsync --recursive --copy-links --size-only --delete /usr/local/src/qwc2-demo-app/prod/* /qwc2/'
-if [ `ls -A /qwc2conf` ]
+if [ "`ls -A /qwc2conf`" ]
 then
    BUILD=$A$and$B$and$C$and$D$and$E$and$E2$and$F$and$G$and$H$and$I$and$J$and$K$and$L
 else
