@@ -8,7 +8,12 @@
   C='yarn run themesconfig'
   D='echo "Theme update successfull!"'
   E='echo "Theme update FAILED"'
-  UPDATE=$A$and$B$and$C$and$D$or$E
+  if [ "`ls -A /qwc2conf`" ]
+  then
+    UPDATE=$A$and$B$and$C$and$D$or$E
+  else
+    UPDATE=$A$and$C$and$D$or$E
+  fi
   if [ "`id -u`" -eq 0 ]
   then
     SETHOME='HOME=/home/user'
