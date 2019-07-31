@@ -1,4 +1,4 @@
-FROM blitznote/debootstrap-amd64:16.04
+FROM huggla/debootstrap-amd64
 
 COPY ./bin/* /usr/local/bin/
 
