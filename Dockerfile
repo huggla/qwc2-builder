@@ -2,6 +2,8 @@ FROM huggla/debootstrap-amd64
 
 COPY ./bin/* /usr/local/bin/
 
+ARG NODE_VERSION="node_8.x"
+
 RUN exec 2>&1 \
  && set -x \
  && chmod u=rwx,go=rx /usr/local/bin/* \
@@ -15,13 +17,16 @@ RUN exec 2>&1 \
  && chmod u=r,go= /run/secrets/id_rsa /run/secrets/user-pw /home/user/.ssh/config \
  && ln -s /run/secrets/id_rsa /home/user/.ssh/ \
  && ln -s /usr/local/src/qwc2-demo-app /home/user/.config/yarn \
- && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+ && curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - \
+ && echo "deb https://deb.nodesource.com/${NODE_VERSION} xenial main" | tee /etc/apt/sources.list.d/nodesource.list \
+ && echo "deb-src https://deb.nodesource.com/${NODE_VERSION} xenial main" | tee -a /etc/apt/sources.list.d/nodesource.list \
  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
  && ln -s /usr/local/bin/* /usr/bin \
  && ln -s /sbin/ldconfig /usr/bin \
  && ln -s /sbin/start-stop-daemon /usr/bin \
  && apt-get update -qq \
+ && apt-get upgrade -qq \
  && apt-get install -yq nano rsync dropbear-bin git nodejs yarn \
  && rm -rf /var/lib/apt/lists/* /usr/local/src/qwc2-demo-app
 
